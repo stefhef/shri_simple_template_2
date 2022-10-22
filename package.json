@@ -1,10 +1,12 @@
 {
     "name": "unit-demo-cra",
     "version": "0.1.0",
-    "homepage": ".",
+    "homepage": "/",
     "private": true,
     "dependencies": {
         "crypto-browserify": "^3.12.0",
+        "gh-pages": "^4.0.0",
+        "html-entities": "^2.3.3",
         "lodash": "^4.17.21",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
@@ -17,13 +19,13 @@
         "rxjs": "^7.1.0"
     },
     "scripts": {
-        "start": "echo \"implement me\"",
-        "build": "echo \"implement me\"",
-        "test": "echo \"implement me\"",
-        "lint:js": "echo \"implement me\"",
-        "lint:css": "echo \"implement me\"",
-        "analyze": "echo \"implement me\"",
-        "validate": "node_modules/.bin/statoscope validate -i stats.json --config=./statoscope.config.js"
+        "deploy": "gh-pages dist",
+        "start": "npx webpack serve --mode=development",
+        "build": "webpack --mode=production",
+        "lint:js": "eslint ../../Desktop --fix",
+        "lint:css": "stylelint **/*.css --fix",
+        "analyze": "npm run validate && statoscope generate stats.json --output report.html",
+        "validate": "statoscope validate -i stats.json --config=./statoscope.config.js"
     },
     "devDependencies": {
         "@babel/core": "^7.19.3",
@@ -32,10 +34,18 @@
         "@statoscope/cli": "^5.24.0",
         "@statoscope/stats-validator-plugin-webpack": "^5.24.0",
         "@statoscope/webpack-plugin": "^5.24.0",
-        "babel-loader": "^8.2.5",
+        "babel-core": "^6.26.3",
+        "babel-plugin-lodash": "^3.3.4",
+        "babel-preset-env": "^1.7.0",
+        "clean-webpack-plugin": "^4.0.0",
+        "eslint": "^8.26.0",
+        "eslint-plugin-react": "^7.31.10",
         "html-webpack-plugin": "^5.5.0",
+        "lodash-webpack-plugin": "^0.11.6",
+        "stylelint": "^14.14.0",
+        "stylelint-config-standard": "^29.0.0",
         "webpack": "^5.74.0",
         "webpack-cli": "^4.10.0",
-        "webpack-dev-server": "^3.11.1"
+        "webpack-dev-server": "^4.11.1"
     }
 }

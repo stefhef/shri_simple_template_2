@@ -1,14 +1,34 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StatoscopePlugin = require('@statoscope/webpack-plugin').default;
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+
 
 const config = {
+    devServer: {
+        historyApiFallback: true,
+        static: {directory: path.join(__dirname, 'public')},
+        open: true,
+        compress: true,
+        hot: true,
+        port: 8080,
+    },
     entry: {
         about: './src/pages/About.js',
         home: './src/pages/Home.js',
+        index: {
+            import: './src/index.js',
+            dependOn: ['about', 'home']
+        }
     },
     plugins: [
-        new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: "public/index.html"
+        }),
+        new LodashModuleReplacementPlugin({
+            'collections': true,
+            'paths': true
+        }),
         new StatoscopePlugin({
             saveStatsTo: 'stats.json',
             saveOnlyStats: false,
@@ -17,19 +37,83 @@ const config = {
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[contenthash].js',
+        filename: '[name].[contenthash].js'
     },
     module: {
         rules: [
-            // @TODO js rule
-            // @TODO css rule
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader']
+
+            },
+            {
+                test: /\.js$/,
+                loader: "babel-loader",
+                exclude: /node_modules/,
+                sideEffects: false,
+                resolve: {
+                    extensions: ['.js']
+                }
+            }
         ],
     },
-    // @TODO optimizations
-    // @TODO lodash treeshaking
-    // @TODO chunk for lodash
-    // @TODO chunk for runtime
-    // @TODO fallback for crypto
+    resolve: {
+        alias: {
+            'crypto-browserify': path.resolve(__dirname, 'src/crypto-fall.js')
+        },
+        fallback: {
+            "stream": false,
+            'crypto': require.resolve('crypto'),
+            'buffer': require.resolve('buffer'),
+        },
+        modules: [
+            path.resolve(__dirname, 'node_modules'),
+            path.resolve(__dirname, 'node_modules/ui/node_modules'),
+        ],
+    },
+    optimization: {
+        usedExports: true,
+        concatenateModules: true,
+        minimize: true,
+        moduleIds: "deterministic",
+        innerGraph: true,
+        providedExports: true,
+        splitChunks: {
+            minSize: 20000,
+            minRemainingSize: 0,
+            maxAsyncRequests: 30,
+            maxInitialRequests: 30,
+            enforceSizeThreshold: 50000,
+            minChunks: 1,
+            chunks: "all",
+            cacheGroups: {
+                defaultVendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                    reuseExistingChunk: true,
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true,
+                },
+            },
+        },
+        runtimeChunk: {
+            name: "runtime"
+        },
+
+    },
+    target: "web",
+    stats: {
+        children: true
+    }
+// @TODO optimizations
+// @TODO lodash treeshaking
+// @TODO chunk for lodash
+// @TODO chunk for runtime
+// @TODO fallback for crypto
+
 };
 
 module.exports = config;
