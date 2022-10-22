@@ -5,6 +5,7 @@
     "private": true,
     "dependencies": {
         "crypto-browserify": "^3.12.0",
+        "eslint-config-airbnb-base": "^15.0.0",
         "gh-pages": "^4.0.0",
         "html-entities": "^2.3.3",
         "lodash": "^4.17.21",
@@ -22,7 +23,7 @@
         "deploy": "gh-pages dist",
         "start": "npx webpack serve --mode=development",
         "build": "webpack --mode=production",
-        "lint:js": "eslint ../../Desktop --fix",
+        "lint:js": "eslint . --fix",
         "lint:css": "stylelint **/*.css --fix",
         "analyze": "npm run validate && statoscope generate stats.json --output report.html",
         "validate": "statoscope validate -i stats.json --config=./statoscope.config.js"
