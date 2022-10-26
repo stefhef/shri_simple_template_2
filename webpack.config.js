@@ -11,7 +11,7 @@ const config = {
         open: true,
         compress: true,
         hot: true,
-        port: 8080,
+        port: 5000,
     },
     entry: {
         about: './src/pages/About.js',
@@ -43,7 +43,10 @@ const config = {
         rules: [
             {
                 test: /\.css$/i,
-                use: ['style-loader', 'css-loader']
+                use: ['style-loader', 'css-loader'],
+                resolve: {
+                    extensions: ['.css']
+                }
 
             },
             {
@@ -68,24 +71,25 @@ const config = {
         },
         modules: [
             path.resolve(__dirname, 'node_modules'),
-            path.resolve(__dirname, 'node_modules/ui/node_modules'),
+            // path.resolve(__dirname, 'node_modules/ui/node_modules'),
         ],
     },
     optimization: {
-        usedExports: true,
-        concatenateModules: true,
         minimize: true,
         moduleIds: "deterministic",
         innerGraph: true,
+        concatenateModules: true,
+        usedExports: true,
+        sideEffects: true,
         providedExports: true,
         splitChunks: {
+            chunks: 'all',
             minSize: 20000,
             minRemainingSize: 0,
+            minChunks: 1,
             maxAsyncRequests: 30,
             maxInitialRequests: 30,
             enforceSizeThreshold: 50000,
-            minChunks: 1,
-            chunks: "all",
             cacheGroups: {
                 defaultVendors: {
                     test: /[\\/]node_modules[\\/]/,
@@ -96,7 +100,7 @@ const config = {
                     minChunks: 2,
                     priority: -20,
                     reuseExistingChunk: true,
-                },
+                }
             },
         },
         runtimeChunk: {

@@ -1,52 +1,60 @@
 {
-    "name": "unit-demo-cra",
-    "version": "0.1.0",
-    "homepage": "/",
-    "private": true,
-    "dependencies": {
-        "crypto-browserify": "^3.12.0",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "gh-pages": "^4.0.0",
-        "html-entities": "^2.3.3",
-        "lodash": "^4.17.21",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
-        "react-redux": "^7.2.4",
-        "react-router": "^5.2.0",
-        "react-router-dom": "^5.2.0",
-        "react-scripts": "4.0.3",
-        "redux": "^4.1.0",
-        "redux-observable": "^2.0.0",
-        "rxjs": "^7.1.0"
-    },
-    "scripts": {
-        "deploy": "gh-pages dist",
-        "start": "npx webpack serve --mode=development",
-        "build": "webpack --mode=production",
-        "lint:js": "eslint . --fix",
-        "lint:css": "stylelint **/*.css --fix",
-        "analyze": "npm run validate && statoscope generate stats.json --output report.html",
-        "validate": "statoscope validate -i stats.json --config=./statoscope.config.js"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.19.3",
-        "@babel/preset-env": "^7.19.3",
-        "@babel/preset-react": "^7.18.6",
-        "@statoscope/cli": "^5.24.0",
-        "@statoscope/stats-validator-plugin-webpack": "^5.24.0",
-        "@statoscope/webpack-plugin": "^5.24.0",
-        "babel-core": "^6.26.3",
-        "babel-plugin-lodash": "^3.3.4",
-        "babel-preset-env": "^1.7.0",
-        "clean-webpack-plugin": "^4.0.0",
-        "eslint": "^8.26.0",
-        "eslint-plugin-react": "^7.31.10",
-        "html-webpack-plugin": "^5.5.0",
-        "lodash-webpack-plugin": "^0.11.6",
-        "stylelint": "^14.14.0",
-        "stylelint-config-standard": "^29.0.0",
-        "webpack": "^5.74.0",
-        "webpack-cli": "^4.10.0",
-        "webpack-dev-server": "^4.11.1"
-    }
+  "name": "unit-demo-cra",
+  "version": "0.1.0",
+  "homepage": "/",
+  "private": true,
+  "dependencies": {
+    "crypto-browserify": "^3.12.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "gh-pages": "^4.0.0",
+    "html-entities": "^2.3.3",
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "redux": "^4.1.0",
+    "redux-observable": "^2.0.0",
+    "rxjs": "^7.1.0"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d dist",
+    "start": "npx webpack serve --mode=development",
+    "build": "webpack --mode=production",
+    "lint:js": "eslint . --fix",
+    "lint:css": "npx stylelint \"**/*.css\" --fix",
+    "analyze": "npm run validate && statoscope generate stats.json --output report.html",
+    "validate": "statoscope validate -i stats.json --config=./statoscope.config.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.3",
+    "@babel/preset-react": "^7.18.6",
+    "@statoscope/cli": "^5.24.0",
+    "@statoscope/stats-validator-plugin-webpack": "^5.24.0",
+    "@statoscope/webpack-plugin": "^5.24.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "eslint": "^8.26.0",
+    "eslint-plugin-react": "^7.31.10",
+    "html-webpack-plugin": "^5.5.0",
+    "lodash-webpack-plugin": "^0.11.6",
+    "stylelint": "^14.14.0",
+    "stylelint-config-standard": "^29.0.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard"
+    ],
+    "ignoreFiles": [
+      "dist/*"
+    ]
+  }
 }

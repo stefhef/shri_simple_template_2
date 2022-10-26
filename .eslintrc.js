@@ -4,12 +4,10 @@ module.exports = {
         "es2021": true,
         "node": true
     },
-    // "extends":
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
     ],
-    "overrides": [],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
