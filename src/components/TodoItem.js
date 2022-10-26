@@ -20,6 +20,7 @@ export const TodoItem= props => {
                 <input type="checkbox" checked={done} onChange={onChange} />
                 {text}
             </div>
+            <h1>ТЕст</h1>
         </div>
     );
 }
