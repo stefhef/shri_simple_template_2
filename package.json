@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "crypto-browserify": "^3.12.0",
+    "eslint": "^8.26.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "gh-pages": "^4.0.0",
     "html-entities": "^2.3.3",
@@ -23,7 +24,7 @@
     "deploy": "gh-pages -d dist",
     "start": "npx webpack serve --mode=development",
     "build": "webpack --mode=production",
-    "lint:js": "eslint . --fix",
+    "lint:js": "eslint .",
     "lint:css": "npx stylelint \"**/*.css\" --fix",
     "analyze": "npm run validate && statoscope generate stats.json --output report.html",
     "validate": "statoscope validate -i stats.json --config=./statoscope.config.js"
@@ -39,7 +40,6 @@
     "babel-plugin-lodash": "^3.3.4",
     "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^4.0.0",
-    "eslint": "^8.26.0",
     "eslint-plugin-react": "^7.31.10",
     "html-webpack-plugin": "^5.5.0",
     "lodash-webpack-plugin": "^0.11.6",
