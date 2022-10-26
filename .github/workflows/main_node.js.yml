@@ -29,7 +29,7 @@ jobs:
     - run: npm ci
     - name: npm linters, build and deploy
       run: |
-        npm lint:js
-        npm lint:css
-        npm build
-        npm deploy
+        npm run lint:js
+        npm run lint:css
+        npm run build
+#        npm run deploy
