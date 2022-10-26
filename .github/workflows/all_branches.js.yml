@@ -3,12 +3,13 @@ name: CI Action
 on: 
   push:
     branches-ignore:
-      - 'main'
+      - 'master'
       - 'gh-pages'
   pull_request:
     branches-ignore:
-      - 'main'
+      - 'master'
       - 'gh-pages'
+  workflow_dispatch:
 
 jobs:
   build:
