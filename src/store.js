@@ -11,35 +11,38 @@ export const setDone = (index, done) => ({ type: 'SET_DONE', index, done });
 
 // reducer
 const rootReducer = (state = DEFAULT_STATE, action) => {
-  switch (action.type) {
-    case 'ADD_ITEM':
-      return {
-        ...state,
-        text: '',
-        items: [...state.items, action.text],
-      };
-    case 'SET_TEXT':
-      return {
-        ...state,
-        text: action.text,
-      };
-    case 'SET_DONE':
-      return {
-        ...state,
-        done: {
-          ...state.done,
-          [action.index]: action.done,
-        },
-      };
-    default:
-      return state;
-  }
+    switch (action.type) {
+        case 'ADD_ITEM':
+            return {
+                ...state,
+                text: '',
+                items: [...state.items, action.text],
+            };
+        case 'SET_TEXT':
+            return {
+                ...state,
+                text: action.text
+            };
+        case 'SET_DONE':
+            return {
+                ...state,
+                done: {
+                    ...state.done,
+                    [action.index]: action.done
+                }
+            };
+        default:
+            return state;
+    }
 };
 
 // epics
 
-export function initStore() {
-  const store = createStore(rootReducer);
 
-  return store;
+
+export function initStore() {
+
+    const store = createStore(rootReducer);
+
+    return store;
 }
