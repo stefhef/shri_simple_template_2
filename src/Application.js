@@ -9,7 +9,7 @@ export function Application() {
     <div>
       <nav>
         <Link data-testid="link-home" to="/">Домашняя страница</Link>
-        <Link to="/about">{vvvvvvvvvvvvvvvvvvvvvvv}</Link>
+        <Link to="/about">Xmmmmmmmmmm</Link>
       </nav>
       <Switch>
         <Route path="/about">
