@@ -5,8 +5,8 @@ module.exports = {
         "node": true
     },
     "extends": [
-        "eslint:recommended",
         "plugin:react/recommended",
+        "eslint:recommended",
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -17,6 +17,7 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off"
     }
 }
