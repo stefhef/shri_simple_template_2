@@ -71,7 +71,7 @@ const config = {
         },
         modules: [
             path.resolve(__dirname, 'node_modules'),
-            // path.resolve(__dirname, 'node_modules/ui/node_modules'),
+            path.resolve(__dirname, 'node_modules/ui/node_modules'),
         ],
     },
     optimization: {
